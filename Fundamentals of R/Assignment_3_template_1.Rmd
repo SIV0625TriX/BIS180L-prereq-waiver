@@ -1,0 +1,90 @@
+---
+title: "Assignment 3 template 1"
+output: html_document
+---
+
+
+
+## Exercise 1
+```{r}
+sum(c(2000:20000))
+```
+The actual sum = 198011000.  
+
+
+
+# Objects
+
+## Exercise 2
+```{r}
+a <- 5
+b <- 2:20
+a
+b
+```
+The above code snippet assigned the number 5 to a and integer numbers from 2 to 20 to b. It then printed the values of a and b separately.  
+
+# Example
+```{r}
+d <- "I just want to be deleted"
+d
+ls() #note that you have to include the parentheses for a function even if no arguments are needed.
+rm(d)
+ls()
+# if type d again, it generates an error because we removed it
+```
+
+# Exercise 3
+```{r}
+# "+" adds element in a to elements in b one-by-one (element-wise execution)
+x <- a + b
+x    # printed a list of numbers, in which each element in b added 5
+
+# "sum()" sums up all elements in the parameters
+y <- sum(a, b)
+y    # printed the sum of all elements in a and b: 214
+```
+
+# Exercise 4
+```{r}
+sum(b[5:10])
+```
+sum = 51.  
+
+# Exercise 5
+```{r}
+sum(b[c(3, 8, 10)])
+```
+sum = 24.  
+
+
+
+# 2 Dimensional Objects
+
+# Example
+```{r}
+m <- matrix(data=1:25,ncol=5,byrow=T)
+m
+m[5,5]
+```
+
+# Exercise 6
+```{r}
+m[3,]    # extracts the 3rd row of m
+m[,3:5]    # extracts the 3rd, 4th, and 5th columns to m together as one object
+```
+
+# Exercise 7
+```{r}
+cbind(m, 101:105)    # binds the columns of m and c(101:105) together
+
+n <- matrix(data = c(3, 6, 9, 6, 3), ncol = 5, byrow = T)
+n_rev <- n    # create a copy for optional task
+n <- rbind(n, m)    # "rbind()" binds the rows of the parameters
+n
+
+# optional: rbind the original n with m (rows reversed)
+n_rev <- rbind(n_rev, m[nrow(m):1,])
+n_rev
+```
+

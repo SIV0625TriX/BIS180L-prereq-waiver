@@ -1,0 +1,23 @@
+---
+title: "Tidyverse Exercise"
+output: html_document
+---
+
+
+
+```{r}
+library(tidyverse)
+
+# import the data as a tibble
+height_data <- read_csv("height_data_clean.csv")
+
+# filter the data by date
+jan_27_23 <- filter(height_data, survey_date == "2023-01-27")
+
+# summarize average height_cm for each pop
+jan_27_23 %>%
+  group_by(pop) %>%
+  summarise(avg_height = mean(height_cm), 
+            n = n()) %>%
+  rmarkdown::paged_table()
+```

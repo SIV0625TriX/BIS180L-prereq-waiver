@@ -1,0 +1,45 @@
+---
+title: "GGplot Exercise"
+output: html_document
+---
+
+
+
+```{r}
+library(tidyverse)
+
+# import the data as a tibble
+height_data <- read_csv("height_data_clean.csv")
+
+# ggplot the trend lines of height_cm over time for eath pop
+height_data %>%
+  ggplot(aes(x = survey_date,
+             y = height_cm,
+             color = pop
+             )) +
+  geom_smooth(formula = y ~ x, 
+              method = "lm"
+              ) +
+  facet_wrap(~pop) +
+  labs(title = "Height over time",
+       x = "Survey date",
+       y = "Height (cm)",
+       color = "Population"
+       ) +
+  theme_bw() 
+
+# boxplot for heights measured on January 27, 2023 for each pop
+jan_27_23 <- filter(height_data, survey_date == "2023-01-27")
+jan_27_23 %>%
+  ggplot(aes(x = pop,
+             y = height_cm,
+             color = pop
+             )) +
+  geom_boxplot() +
+  labs(title = "Heights on January 27", 
+       x = "Population",
+       y = "Height (cm)",
+       color = "Population") +
+  scale_x_discrete(guide = guide_axis(n.dodge=3)) +
+  theme_bw()
+```
